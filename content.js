@@ -18,6 +18,10 @@
     setTimeout(() => run(), Math.max(2000, duration * 1000));
   }());
 
+  function isRelevantNode (node) {
+    return !/^(STYLE|SCRIPT)$/.test(node.parentNode.nodeName);
+  }
+
   function searchAndDestroy () {
     if (plurals.length === 0 && singulars.length === 0) {
       return;
@@ -28,15 +32,19 @@
     let counter = 0;
     let node;
     while (node = walker.nextNode()) {
-      if (innenRegExp.test(node.nodeValue)) {
-        const parsed = parse(node.nodeValue, plurals);
-        node.nodeValue = parsed.value;
-        counter += parsed.counter;
-      }
-      if (inRegExp.test(node.nodeValue)) {
-        const parsed = parse(node.nodeValue, singulars);
-        node.nodeValue = parsed.value;
-        counter += parsed.counter;
+      if (isRelevantNode(node)) {
+        if (innenRegExp.test(node.nodeValue)) {
+          const parsed = parse(node.nodeValue, plurals);
+          console.log(node.nodeName, node.nodeType, node.parentNode.nodeName, node.parentNode.nodeType);
+          node.nodeValue = parsed.value;
+          counter += parsed.counter;
+        }
+        if (inRegExp.test(node.nodeValue)) {
+          const parsed = parse(node.nodeValue, singulars);
+          console.log(node.nodeName, node.nodeType, node.parentNode.nodeName, node.parentNode.nodeType);
+          node.nodeValue = parsed.value;
+          counter += parsed.counter;
+        }
       }
     }
 

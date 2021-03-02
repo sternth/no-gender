@@ -1,6 +1,6 @@
 {
   "name": "No Gender",
-  "description": "Diese Web-Extension versucht Gendernwahn auf Webseiten zu entfernen.",
+  "description": "Entfernt diverse Arten des \"Gendern\" auf Webseiten.",
   "version": "1.0",
   "manifest_version": 3,
   "background": {

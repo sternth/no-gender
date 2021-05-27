@@ -5,7 +5,7 @@
   "manifest_version": 2,
   "background": {
     "scripts": [
-      "background/background.js"
+      "background.js"
     ]
   },
   "permissions": [],

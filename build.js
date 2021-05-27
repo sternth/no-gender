@@ -28,6 +28,9 @@ async function run () {
   console.log('archiving web extension ...')
   await archiveFiles('chrome')
   console.log('chrome extension zipped ...')
+  console.log('copying chrome extension for development ...')
+  fs.copySync(tempFolder, join(distFolder, 'chrome-dev'))
+  console.log('copied chrome extension to dist/chrome-dev ...')
   fs.rmdirSync(tempFolder, { recursive: true })
   console.log('temporary files removed ...')
 

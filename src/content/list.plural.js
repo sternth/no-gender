@@ -35,6 +35,7 @@
     getInnenRegExp('Gött', 'Götter'),
     getInnenRegExp('Chilen', 'Chilenen'),
     getInnenRegExp('Wander', 'Wanderer'),
+    getInnenRegExp('Kollegen', 'Kollegen'),
   ].concat([
     /**
      * Replace objects for plural terms like:

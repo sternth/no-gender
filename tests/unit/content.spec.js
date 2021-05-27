@@ -847,6 +847,18 @@ describe('no-gender', () => {
       searchAndDestroy()
       expect(document.body.innerHTML).toBe('Sie alle sind Wanderer!')
     })
+
+    it('should find and replace "Kolleg*innen"', () => {
+      document.body.innerHTML = 'Sie alle sind Kolleg*innen!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie alle sind Kollegen!')
+    })
+
+    it('should find and replace "Kollegen*innen"', () => {
+      document.body.innerHTML = 'Sie alle sind Kollegen*innen!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie alle sind Kollegen!')
+    })
   })
 
   describe('singular terms', () => {

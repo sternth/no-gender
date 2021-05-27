@@ -52,6 +52,8 @@ async function run () {
     fs.copySync(srcFolder, tempFolder)
     console.log(`remove unnecessary manifest for ${other} ...`)
     fs.removeSync(join(tempFolder, `manifest.${other}.json`))
+    console.log(`rename manifest for ${target} to manifest.json ...`)
+    fs.renameSync(join(tempFolder, `manifest.${target}.json`), join(tempFolder, 'manifest.json'))
   }
 
   function archiveFiles (target) {

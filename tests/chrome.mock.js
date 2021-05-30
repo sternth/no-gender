@@ -1,4 +1,5 @@
 let onMessageCb = () => {}
+let localGetCb = () => {}
 
 // eslint-disable-next-line no-undef
 global.chrome = {
@@ -10,10 +11,15 @@ global.chrome = {
     },
     sendMessage: jest.fn(),
   },
+  storage: {
+    local: {
+      get: jest.fn().mockImplementation(() => localGetCb()),
+    },
+  },
   __test__: {
     runtime: {
       onMessage: {
-        addListenerCb: (message) => onMessageCb(message),
+        addListenerCb: jest.fn().mockImplementation((message) => onMessageCb(message)),
       },
     },
   },

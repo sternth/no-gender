@@ -12,7 +12,11 @@
     searchAndDestroy()
   }
 
-  searchAndDestroy()
+  chrome.storage.local.get(['inactive'], result => {
+    if (!result.inactive) {
+      searchAndDestroy()
+    }
+  })
 
   /**
    * Listen for getCount requests

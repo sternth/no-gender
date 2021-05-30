@@ -10,6 +10,7 @@ button {
   margin: 8px 0;
   width: 100%;
   text-align: center;
+  text-transform: uppercase;
 }
 
 p {

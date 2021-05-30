@@ -23,6 +23,17 @@
       "run_at": "document_end"
     }
   ],
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": {
+      "16": "/assets/logo_16.png",
+      "32": "/assets/logo_32.png",
+      "48": "/assets/logo_48.png",
+      "128": "/assets/logo_128.png"
+    },
+    "default_title": "no-gender",
+    "default_popup": "popup/popup.html"
+  },
   "icons": {
     "16": "/assets/logo_16.png",
     "32": "/assets/logo_32.png",

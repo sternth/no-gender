@@ -1,0 +1,17 @@
+body {
+  border: 1px solid #090e1a;
+  color: #090e1a;
+  margin: 0;
+  min-width: 240px;
+  padding: 10px;
+}
+
+button {
+  margin: 8px 0;
+  width: 100%;
+  text-align: center;
+}
+
+p {
+  margin: 4px 0;
+}

@@ -7,7 +7,6 @@
 
   /* configuration */
   APP.config = {
-    active: true,
     expressions: {
       innen: INNEN_EXPR,
       in: IN_EXPR,

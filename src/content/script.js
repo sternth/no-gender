@@ -4,7 +4,6 @@
   const APP = global.noGender
   const { regularExpressions } = APP.config
   const { listPlural, listSingular } = APP
-  let { active } = APP.config
   let timeoutId = null
   let counter = 0
 
@@ -14,30 +13,23 @@
   }
 
   searchAndDestroy()
-  chrome.runtime.onMessage.addListener((message) => {
-    active = !!message.active
+
+  /**
+   * Listen for getCount requests
+   */
+  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.type === 'getCount') {
+      sendResponse(counter.toString())
+    }
   })
 
   /**
    * Search and destroy any gender term
    */
   function searchAndDestroy () {
-    let timeout = 2000 // default timeout
-    if (active) {
-      const duration = iterate()
-      timeout = Math.max(timeout, duration * 1000)
-      try {
-        chrome.runtime.sendMessage({
-          active,
-          counter,
-          duration,
-          timeout,
-        })
-      } catch (err) {
-        /* ignore error */
-      }
-    }
-    timeoutId = setTimeout(searchAndDestroy, timeout)
+    const duration = iterate()
+    console.debug('duration:', duration, 'ms - counter:', counter)
+    timeoutId = setTimeout(searchAndDestroy, duration + 2000)
   }
 
   /**
@@ -92,6 +84,7 @@
       const { regExp, replace } = item
       text = text.replace(regExp, (match, word) => {
         try {
+          counter++
           return typeof replace === 'string' ? replace : replace(word)
         } catch (err) {
           console.debug('item:', item, 'match:', match, 'word:', word)

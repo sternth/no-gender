@@ -53,14 +53,6 @@ describe('no-gender', () => {
     expect(document.body.innerHTML).toBe('Lorem ipsum dolor sit amet')
   })
 
-  describe('active flag', () => {
-    chrome.__test__.runtime.onMessage.addListenerCb({ active: false })
-    document.body.innerHTML = 'Gendern mit Unterstrich: Kund_innen.'
-    searchAndDestroy()
-    expect(document.body.innerHTML).toBe('Gendern mit Unterstrich: Kund_innen.')
-    chrome.__test__.runtime.onMessage.addListenerCb({ active: true })
-  })
-
   describe('plural terms', () => {
     it('should find and replace "Unterstrich: Kund_innen"', () => {
       document.body.innerHTML = 'Gendern mit Unterstrich: Kund_innen.'

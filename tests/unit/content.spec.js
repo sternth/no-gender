@@ -851,6 +851,12 @@ describe('no-gender', () => {
       searchAndDestroy()
       expect(document.body.innerHTML).toBe('Sie alle sind Kollegen!')
     })
+
+    it('should find and replace "Be&shy;am&shy;t:in&shy;nen"', () => {
+      document.body.innerHTML = 'Sie alle sind Be&shy;am&shy;t:in&shy;nen!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie alle sind Beamten!')
+    })
   })
 
   describe('singular terms', () => {

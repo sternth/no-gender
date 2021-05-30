@@ -28,7 +28,6 @@
    */
   function searchAndDestroy () {
     const duration = iterate()
-    console.debug('duration:', duration, 'ms - counter:', counter)
     timeoutId = setTimeout(searchAndDestroy, duration + 2000)
   }
 
@@ -65,12 +64,33 @@
    * @param node {Node} node to check
    */
   function parseNode (node) {
-    if (regularExpressions.innen.test(node.nodeValue)) {
-      node.nodeValue = parse(node.nodeValue, listPlural)
+    if (containsSearchedExpressions) {
+      node.nodeValue = clean(node.nodeValue)
+      if (regularExpressions.innen.test(node.nodeValue)) {
+        node.nodeValue = parse(node.nodeValue, listPlural)
+      }
+      if (regularExpressions.in.test(node.nodeValue)) {
+        node.nodeValue = parse(node.nodeValue, listSingular)
+      }
     }
-    if (regularExpressions.in.test(node.nodeValue)) {
-      node.nodeValue = parse(node.nodeValue, listSingular)
-    }
+  }
+
+  /**
+   * Check if text contains searched expressions
+   * @param text {string} text to be checked
+   * @returns {boolean} `true` if text contains searched expression
+   */
+  function containsSearchedExpressions (text) {
+    return regularExpressions.in.test(text) || regularExpressions.innen.test(text)
+  }
+
+  /**
+   * Removes disturbing character soft hyphens
+   * @param text {string} text to clean
+   * @returns {string} text without disturbing characters
+   */
+  function clean (text) {
+    return text.replace(/[\u00AD]/g, '')
   }
 
   /**

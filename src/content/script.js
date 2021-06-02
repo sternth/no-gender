@@ -14,16 +14,21 @@
 
   chrome.storage.local.get(['inactive'], result => {
     if (!result.inactive) {
-      searchAndDestroy()
+      APP.run()
     }
   })
 
-  /**
-   * Listen for getCount requests
-   */
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.type === 'getCount') {
-      sendResponse(counter.toString())
+    switch (message.type) {
+      case 'count':
+        sendResponse(counter.toString())
+        break
+      case 'start':
+        APP.run()
+        break
+      case 'stop':
+        clearTimeout(timeoutId)
+        break
     }
   })
 
@@ -32,7 +37,8 @@
    */
   function searchAndDestroy () {
     const duration = iterate()
-    timeoutId = setTimeout(searchAndDestroy, duration + 2000)
+    const timeout = (duration * 10) + 2000
+    timeoutId = setTimeout(searchAndDestroy, timeout)
   }
 
   /**
@@ -89,7 +95,8 @@
   }
 
   /**
-   * Removes disturbing character soft hyphens
+   * Removes disturbing character:
+   * - soft hyphens
    * @param text {string} text to clean
    * @returns {string} text without disturbing characters
    */

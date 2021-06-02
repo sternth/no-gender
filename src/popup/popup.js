@@ -1,6 +1,7 @@
 const $foundTerms = document.getElementById('found-terms')
 const $toggleBtn = document.getElementById('toggle-btn')
 const $reloadBtn = document.getElementById('reload-btn')
+const disabledExtensionText = 'Web-Extension ist <b>deaktiviert</b>.'
 let checkResultTimeoutId = null
 let active = false
 
@@ -10,21 +11,22 @@ chrome.storage.local.get(['inactive'], result => {
   $toggleBtn.disabled = false
   $toggleBtn.addEventListener('click', toggleExtension)
   $reloadBtn.addEventListener('click', reloadPage)
-  checkResult()
+  if (active) {
+    checkResult()
+  } else {
+    $foundTerms.innerHTML = disabledExtensionText
+  }
 })
 
 function toggleExtension () {
   active = !active
   clearTimeout(checkResultTimeoutId)
   if (active) {
-    chrome.storage.local.remove('inactive')
-    checkResult()
+    activateExtension()
   } else {
-    chrome.storage.local.set({ inactive: true })
-    $foundTerms.innerHTML = 'Web-Extension ist <b>deaktiviert</b>.'
+    deactivateExtension()
   }
   $toggleBtn.innerText = active ? 'deaktivieren' : 'aktivieren'
-  $reloadBtn.style.display = 'block'
 }
 
 function reloadPage () {
@@ -34,20 +36,37 @@ function reloadPage () {
   })
 }
 
+function activateExtension () {
+  sendMessageToActiveTab('start')
+  chrome.storage.local.remove('inactive')
+  $reloadBtn.style.display = 'none'
+  checkResult()
+}
+
+function deactivateExtension () {
+  sendMessageToActiveTab('stop')
+  $foundTerms.innerHTML = disabledExtensionText
+  chrome.storage.local.set({ inactive: true })
+  $reloadBtn.style.display = 'block'
+}
+
 function checkResult () {
+  sendMessageToActiveTab('count', function (count) {
+    if (count === 1) {
+      $foundTerms.innerHTML = 'Es wurde <b>ein</b> Gender-Begriff gefunden.'
+    } else if (count > 1) {
+      $foundTerms.innerHTML = `Es wurden <b>${count}</b> Gender-Begriffe gefunden.`
+    } else {
+      $foundTerms.innerHTML = 'Es wurden <b>Keine</b> Gender-Begriffe gefunden.'
+    }
+    if (active) {
+      checkResultTimeoutId = setTimeout(checkResult, 2000)
+    }
+  })
+}
+
+function sendMessageToActiveTab (type, responseCallback) {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { type: 'getCount' }, function (count) {
-      console.log('count:', count)
-      if (count === 1) {
-        $foundTerms.innerHTML = 'Es wurde <b>ein</b> Gender-Begriff gefunden.'
-      } else if (count > 1) {
-        $foundTerms.innerHTML = `Es wurden <b>${count}</b> Gender-Begriffe gefunden.`
-      } else {
-        $foundTerms.innerHTML = 'Es wurden <b>Keine</b> Gender-Begriffe gefunden.'
-      }
-      if (active) {
-        checkResultTimeoutId = setTimeout(checkResult, 2000)
-      }
-    })
+    chrome.tabs.sendMessage(tabs[0].id, { type }, responseCallback)
   })
 }

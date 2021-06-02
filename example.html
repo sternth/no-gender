@@ -16,7 +16,7 @@
 <div class="container">
   <h1>Hallo liebe Kolleg:innen</h1>
   <h2>&emsp;oder Kollegen*innen</h2>
-  <p></p>
+  <p>Dieser Text wird alle paar Sekunden aktualisiert: <span id="dynamic-text">...</span></p>
   <ul>
     <li>Gendern mit Unterstrich: Kund_innen.</li>
     <li>Gendern mit Sternchen: Kund*innen.</li>
@@ -62,5 +62,10 @@
     <p>Sie als Zöger_in sind dazu verpflichtet.</p>
   </div>
 </div>
+<script>
+  setInterval(() => {
+    document.getElementById('dynamic-text').innerText = 'Wir brauchen keine Held*innen.'
+  }, 900)
+</script>
 </body>
 </html>

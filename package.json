@@ -7,7 +7,8 @@
     "test": "jest --coverage true",
     "lint": "eslint src",
     "build": "node build.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "version": "npm run lint && npm t && npm run build && git commit --no-verify -m \"Build extension for distribution\" dist/"
   },
   "repository": {
     "type": "git",

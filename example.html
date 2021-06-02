@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+  <style>
+    .container {
+      left: 50%;
+      margin-left: -400px;
+      position: absolute;
+      width: 800px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Hallo liebe Kolleg:innen</h1>
+  <h2>&emsp;oder Kollegen*innen</h2>
+  <p>Dieser Text wird alle paar Sekunden aktualisiert: <span id="dynamic-text">...</span></p>
+  <ul>
+    <li>Gendern mit Unterstrich: Kund_innen.</li>
+    <li>Gendern mit Sternchen: Kund*innen.</li>
+    <li>Gender Gap: Kund innen.</li>
+    <li>Gendern mit Doppelpunkt: Kund:innen.</li>
+    <li>Gendern mit Punkt: Kund. innen.</li>
+  </ul>
+  <div style="float: left">
+    <p>Wir alle sind Be&shy;am&shy;t:in&shy;nen ...</p>
+    <p>Wir alle sind Beobachter:innen ...</p>
+    <p>Sie alle sind Bierverkäufer*innen!</p>
+    <p>Sie alle sind Bierverleger*innen!</p>
+    <p>Sie alle sind Bieter*innen!</p>
+    <p>Sie alle sind Bildersammler*innen!</p>
+    <p>Sie alle sind Kleinaktionär_innen!</p>
+    <p>Sie alle sind Legionär_innen!</p>
+    <p>Sie alle sind Ingenieur_innen!</p>
+    <p>Sie alle sind Kollaborateur_innen!</p>
+    <p>Sie alle sind Konstrukteur_innen!</p>
+    <p>Sie alle sind Lebensmittelkontrolleur_innen!</p>
+    <p>Sie alle sind Teufel:innen!</p>
+    <p>Sie alle sind Enkel:innen!</p>
+    <p>Sie alle sind Gräf:innen!</p>
+    <p>Sie alle sind Westfäl:innen!</p>
+    <p>Sie alle sind Nachbar:innen!</p>
+  </div>
+  <div style="float: right">
+    <p>Sie als Wölf:in sind dazu verpflichtet.</p>
+    <p>Sie als Prinzess:in sind dazu verpflichtet.</p>
+    <p>Sie als Närr:in sind dazu verpflichtet.</p>
+    <p>Sie als Gräf:in sind dazu verpflichtet.</p>
+    <p>Sie als Schurk*in sind dazu verpflichtet.</p>
+    <p>Sie als Bär*in sind dazu verpflichtet.</p>
+    <p>Sie als Barkeeper*in sind dazu verpflichtet.</p>
+    <p>Sie als Baron*in sind dazu verpflichtet.</p>
+    <p>Sie als Baseler*in sind dazu verpflichtet.</p>
+    <p>Sie als Basketballer:in sind dazu verpflichtet.</p>
+    <p>Sie als Basketballspieler:in sind dazu verpflichtet.</p>
+    <p>Sie als Basler:in sind dazu verpflichtet.</p>
+    <p>Sie als Bassist:in sind dazu verpflichtet.</p>
+    <p>Sie als Bayer_in sind dazu verpflichtet.</p>
+    <p>Sie als Schwäger_in sind dazu verpflichtet.</p>
+    <p>Sie als Zöger_in sind dazu verpflichtet.</p>
+  </div>
+</div>
+<script>
+  setInterval(() => {
+    document.getElementById('dynamic-text').innerText = 'Wir brauchen keine Held*innen.'
+  }, 900)
+</script>
+</body>
+</html>

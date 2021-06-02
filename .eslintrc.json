@@ -1,0 +1,40 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "webextensions": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 12
+  },
+  "rules": {
+    "semi": [
+      "error",
+      "never"
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "./*.js",
+        "./tests/**/*.js"
+      ],
+      "env": {
+        "browser": true,
+        "es2021": true,
+        "jest": true,
+        "node": true,
+        "webextensions": true
+      }
+    }
+  ]
+}

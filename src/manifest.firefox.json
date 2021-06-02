@@ -1,0 +1,45 @@
+{
+  "name": "No Gender",
+  "description": "Entfernt diverse Arten des \"Gendern\" auf Webseiten.",
+  "version": "1.1",
+  "manifest_version": 2,
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "content/app.js",
+        "content/list.plural.js",
+        "content/list.singular.js",
+        "content/script.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": {
+      "16": "/assets/logo_16.png",
+      "32": "/assets/logo_32.png",
+      "48": "/assets/logo_48.png",
+      "128": "/assets/logo_128.png"
+    },
+    "default_title": "no-gender",
+    "default_popup": "popup/popup.html"
+  },
+  "icons": {
+    "16": "/assets/logo_16.png",
+    "32": "/assets/logo_32.png",
+    "48": "/assets/logo_48.png",
+    "128": "/assets/logo_128.png"
+  }
+}

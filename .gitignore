@@ -1,4 +1,6 @@
 .DS_Store
+coverage
+dist/chrome-dev
 node_modules
 
 # local env files

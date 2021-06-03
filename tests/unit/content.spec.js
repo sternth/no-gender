@@ -53,6 +53,12 @@ describe('no-gender', () => {
     expect(document.body.innerHTML).toBe('Lorem ipsum dolor sit amet')
   })
 
+  it('should not clean content if no gender expression exists', () => {
+    document.body.innerHTML = 'Lo&shy;rem ip&shy;sum do&shy;lor sit amet'
+    searchAndDestroy()
+    expect(document.body.innerHTML).toBe('Lo\u00ADrem ip\u00ADsum do\u00ADlor sit amet')
+  })
+
   describe('plural terms', () => {
     it('should find and replace "Unterstrich: Kund_innen"', () => {
       document.body.innerHTML = 'Gendern mit Unterstrich: Kund_innen.'

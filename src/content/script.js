@@ -74,7 +74,7 @@
    * @param node {Node} node to check
    */
   function parseNode (node) {
-    if (containsSearchedExpressions) {
+    if (containsSearchedExpressions(node.nodeValue)) {
       node.nodeValue = clean(node.nodeValue)
       if (regularExpressions.innen.test(node.nodeValue)) {
         node.nodeValue = parse(node.nodeValue, listPlural)

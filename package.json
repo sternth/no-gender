@@ -1,6 +1,6 @@
 {
   "name": "no-gender",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Webextension that removes any kind of \"gendern\" from webpages.",
   "main": "index.js",
   "scripts": {

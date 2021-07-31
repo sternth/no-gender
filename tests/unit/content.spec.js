@@ -863,6 +863,30 @@ describe('no-gender', () => {
       searchAndDestroy()
       expect(document.body.innerHTML).toBe('Sie alle sind Beamten!')
     })
+
+    it('should find and replace "ChefInnen"', () => {
+      document.body.innerHTML = 'Sie alle sind ChefInnen!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie alle sind Chefs!')
+    })
+
+    it('should find and replace "GegnerInnen"', () => {
+      document.body.innerHTML = 'Sie alle sind GegnerInnen!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie alle sind Gegner!')
+    })
+
+    it('should find and replace "DirektkandidatInnen"', () => {
+      document.body.innerHTML = 'Sie alle sind DirektkandidatInnen!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie alle sind Direktkandidaten!')
+    })
+
+    it('should find and replace "KandidatInnenliste"', () => {
+      document.body.innerHTML = 'Sie alle sind KandidatInnenliste!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie alle sind Kandidatenliste!')
+    })
   })
 
   describe('singular terms', () => {
@@ -1944,6 +1968,48 @@ describe('no-gender', () => {
       document.body.innerHTML = 'Sie als Wander_in sind dazu verpflichtet.'
       searchAndDestroy()
       expect(document.body.innerHTML).toBe('Sie als Wanderer sind dazu verpflichtet.')
+    })
+
+    it('should find and replace "BayerIn"', () => {
+      document.body.innerHTML = 'Sie als BayerIn sind dazu verpflichtet.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie als Bayer sind dazu verpflichtet.')
+    })
+
+    it('should find and replace "SchwägerIn"', () => {
+      document.body.innerHTML = 'Sie als SchwägerIn sind dazu verpflichtet.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie als Schwager sind dazu verpflichtet.')
+    })
+
+    it('should find and replace "ZögerIn"', () => {
+      document.body.innerHTML = 'Sie als ZögerIn sind dazu verpflichtet.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie als Zögerer sind dazu verpflichtet.')
+    })
+
+    it('should find and replace "WanderIn"', () => {
+      document.body.innerHTML = 'Sie als WanderIn sind dazu verpflichtet.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie als Wanderer sind dazu verpflichtet.')
+    })
+
+    it('should find and replace "GegnerIn"', () => {
+      document.body.innerHTML = 'Sie als GegnerIn sind dazu verpflichtet.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie als Gegner sind dazu verpflichtet.')
+    })
+
+    it('should find and replace "DirektkandidatIn"', () => {
+      document.body.innerHTML = 'Sie als DirektkandidatIn sind dazu verpflichtet.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie als Direktkandidat sind dazu verpflichtet.')
+    })
+
+    it('should find and replace "ChefIn"', () => {
+      document.body.innerHTML = 'Sie als ChefIn sind dazu verpflichtet.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie als Chef sind dazu verpflichtet.')
     })
   })
 })

@@ -2,15 +2,11 @@
   global.noGender = global.noGender || {}
 
   const APP = global.noGender
-  const INNEN_EXPR = '([:*_]innen|!nnen)'
-  const IN_EXPR = '([:*_]in|!n)'
+  const INNEN_EXPR = '([:*_]innen|!nnen|Innen)'
+  const IN_EXPR = '([:*_]in|!n|In)'
 
   /* configuration */
   APP.config = {
-    expressions: {
-      innen: INNEN_EXPR,
-      in: IN_EXPR,
-    },
     regularExpressions: {
       innen: new RegExp(INNEN_EXPR),
       in: new RegExp(IN_EXPR),

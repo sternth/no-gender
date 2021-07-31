@@ -86,7 +86,7 @@
       'tär',
       'när',
       'eur',
-    ], term => term + 'e'),
+    ], (term, word) => word + 'e'),
   ].concat([
     /**
      * Replace objects for all other plural terms:

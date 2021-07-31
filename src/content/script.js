@@ -116,7 +116,7 @@
       text = text.replace(regExp, (match, word) => {
         try {
           counter++
-          return typeof replace === 'string' ? replace : replace(word)
+          return typeof replace === 'string' ? replace : replace(match, word)
         } catch (err) {
           console.debug('item:', item, 'match:', match, 'word:', word)
           console.error(err)

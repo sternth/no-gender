@@ -196,7 +196,7 @@
       'Afghan',
       'Äbtiss',
       'Abchas',
-    ], term => term + 'e'),
+    ], (term, word) => word + 'e'),
   ]).concat([
     /**
      * Replace objects for all other plural terms:
@@ -204,7 +204,7 @@
      * - Held*in -> Held
      * - Bürger*in -> Bürger
      */
-    getInRegExp('', ''),
+    getInRegExp('(?:\\w)', term => term[0]),
   ])
 
   /* code here */

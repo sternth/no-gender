@@ -1,3 +1,6 @@
+## v1.3.0
+- Add gender-terms with Innen to filter
+
 ## v1.2.0
 - Fix: Ignore node.nodeValues that have no gender expression
 

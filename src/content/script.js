@@ -74,13 +74,17 @@
    * @param node {Node} node to check
    */
   function parseNode (node) {
+    if (regularExpressions.innenUnd.test(node.nodeValue)) {
+      const { regExp, replace } = APP.helpers.getInnenUndRegExp()
+      node.nodeValue = node.nodeValue.replace(regExp, replace)
+    }
     if (containsSearchedExpressions(node.nodeValue)) {
       node.nodeValue = clean(node.nodeValue)
       if (regularExpressions.innen.test(node.nodeValue)) {
-        node.nodeValue = parse(node.nodeValue, listPlural)
+        node.nodeValue = parseList(node.nodeValue, listPlural)
       }
       if (regularExpressions.in.test(node.nodeValue)) {
-        node.nodeValue = parse(node.nodeValue, listSingular)
+        node.nodeValue = parseList(node.nodeValue, listSingular)
       }
     }
   }
@@ -110,7 +114,7 @@
    * @param list {{replace, regExp: RegExp}[]} replace-objects
    * @returns {string} parsed text
    */
-  function parse (text, list) {
+  function parseList (text, list) {
     list.forEach(item => {
       const { regExp, replace } = item
       text = text.replace(regExp, (match, word) => {

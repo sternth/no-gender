@@ -915,6 +915,20 @@ describe('no-gender', () => {
         expect(document.body.innerHTML).toBe('Sie alle sind Beamten!')
       })
     })
+
+    describe('"...innen und ..."', () => {
+      it('should find and replace "Helferinnen und Helfer"', () => {
+        document.body.innerHTML = 'Sie alle sind Helferinnen und Helfer!'
+        searchAndDestroy()
+        expect(document.body.innerHTML).toBe('Sie alle sind Helfer!')
+      })
+
+      it('should find and replace "Ärztinnen und Ärzte"', () => {
+        document.body.innerHTML = 'Sie alle sind Ärztinnen und Ärzte!'
+        searchAndDestroy()
+        expect(document.body.innerHTML).toBe('Sie alle sind Ärzte!')
+      })
+    })
   })
 
   describe('singular terms', () => {

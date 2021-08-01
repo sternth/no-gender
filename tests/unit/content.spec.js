@@ -887,6 +887,18 @@ describe('no-gender', () => {
       searchAndDestroy()
       expect(document.body.innerHTML).toBe('Sie alle sind Kandidatenliste!')
     })
+
+    it('should not replace words stating with "Innen"', () => {
+      document.body.innerHTML = 'Die Innenausstattung ist schön!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Die Innenausstattung ist schön!')
+    })
+
+    it('should not replace word Innen', () => {
+      document.body.innerHTML = 'Innen ist nicht außen!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Innen ist nicht außen!')
+    })
   })
 
   describe('singular terms', () => {
@@ -2010,6 +2022,18 @@ describe('no-gender', () => {
       document.body.innerHTML = 'Sie als ChefIn sind dazu verpflichtet.'
       searchAndDestroy()
       expect(document.body.innerHTML).toBe('Sie als Chef sind dazu verpflichtet.')
+    })
+
+    it('should not replace words stating with "In"', () => {
+      document.body.innerHTML = 'Der Film Inside ist ein sehr guter Film!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Der Film Inside ist ein sehr guter Film!')
+    })
+
+    it('should not replace word Innen', () => {
+      document.body.innerHTML = 'Auf dem Trampolin springen ist In, aber auch gefährlich!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Auf dem Trampolin springen ist In, aber auch gefährlich!')
     })
   })
 })

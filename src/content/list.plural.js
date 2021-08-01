@@ -94,6 +94,6 @@
      * - Erb*innen -> Erben
      * - Held*innen -> Helden
      */
-    getInnenRegExp('', 'en'),
+    getInnenRegExp('(?:\\w)', term => term[0] + 'en'),
   ]))
 }(typeof window !== 'undefined' ? window : this))

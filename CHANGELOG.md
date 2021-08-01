@@ -1,3 +1,7 @@
+## v1.4.0
+- Fix replacing single In and Innen terms
+- Add filter for "...innen und ..." expressions
+
 ## v1.3.0
 - Add gender-terms with Innen to filter
 

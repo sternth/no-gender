@@ -929,6 +929,14 @@ describe('no-gender', () => {
         expect(document.body.innerHTML).toBe('Sie alle sind Ärzte!')
       })
     })
+
+    describe('"...innen oder ..."', () => {
+      it('should find and replace "Partnerinnen oder Partner"', () => {
+        document.body.innerHTML = 'Eine Nachricht an alle Partnerinnen oder Partner!'
+        searchAndDestroy()
+        expect(document.body.innerHTML).toBe('Eine Nachricht an alle Partner!')
+      })
+    })
   })
 
   describe('singular terms', () => {

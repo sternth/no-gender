@@ -4,7 +4,7 @@
   const APP = global.noGender
   const INNEN_EXPR = '([:*_]innen|!nnen|Innen)'
   const IN_EXPR = '([:*_]in|!n|In)'
-  const INNEN_UND_EXPR = '[A-Za-zÄÖÜäöü]+innen und ([A-Za-zÄÖÜäöü]+)'
+  const INNEN_UND_EXPR = '[A-Za-zÄÖÜäöü]+innen (?:und|oder) ([A-Za-zÄÖÜäöü]+)'
 
   /* configuration */
   APP.config = {

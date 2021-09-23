@@ -6,9 +6,13 @@
   <style>
     .container {
       left: 50%;
-      margin-left: -400px;
+      margin-left: -600px;
       position: absolute;
-      width: 800px;
+      width: 1200px;
+    }
+    .column {
+      float: left;
+      padding: 0 20px;
     }
   </style>
 </head>
@@ -16,7 +20,7 @@
 <div class="container">
   <h1>Hallo liebe Kolleg:innen</h1>
   <h2>&emsp;oder Kollegen*innen</h2>
-  <p>Dieser Text wird alle paar Sekunden aktualisiert: <span id="dynamic-text">...</span></p>
+  <p><b>Dynamisch:</b> Dieser Text wird alle paar Sekunden aktualisiert: <span id="dynamic-text">...</span></p>
   <p><b>Test:</b> Test-Markierungen dürfen nicht entfernt werden, außer es wurde eine Gender-Expression entfernt.</p>
   <ul>
     <li>Gendern mit Unterstrich: Kund_innen.</li>
@@ -25,7 +29,7 @@
     <li>Gendern mit Doppelpunkt: Kund:innen.</li>
     <li>Gendern mit Punkt: Kund. innen.</li>
   </ul>
-  <div style="float: left">
+  <div class="column">
     <p>Wir alle sind Be&shy;am&shy;t:in&shy;nen ...</p>
     <p>Wir alle sind Beobachter:innen ...</p>
     <p>Sie alle sind Bierverkäufer*innen!</p>
@@ -45,7 +49,7 @@
     <p>Sie alle sind Nachbar:innen!</p>
     <p>Sie alle sind Ärztinnen und Ärzte!</p>
   </div>
-  <div style="float: right">
+  <div class="column">
     <p>Sie als Wölf:in sind dazu verpflichtet.</p>
     <p>Sie als Prinzess:in sind dazu verpflichtet.</p>
     <p>Sie als Närr:in sind dazu verpflichtet.</p>
@@ -62,6 +66,10 @@
     <p>Sie als Bayer_in sind dazu verpflichtet.</p>
     <p>Sie als Schwäger_in sind dazu verpflichtet.</p>
     <p>Sie als Zöger_in sind dazu verpflichtet.</p>
+  </div>
+  <div class="column">
+    <p>Kri&shy;ti&shy;ke&shy;r:in&shy;nen geht das nicht weit genug.</p>
+    <p>Anders als bei Bun&shy;des&shy;wehr&shy;hel&shy;fe&shy;r:in&shy;nen gilt die Zweijahresfrist für sie noch immer.</p>
   </div>
 </div>
 <script>

@@ -914,6 +914,12 @@ describe('no-gender', () => {
         searchAndDestroy()
         expect(document.body.innerHTML).toBe('Sie alle sind Beamten!')
       })
+
+      it('should find and replace "Kri&shy;ti&shy;ke&shy;r:in&shy;nen"', () => {
+        document.body.innerHTML = 'Kri&shy;ti&shy;ke&shy;r:in&shy;nen geht das nicht weit genug.'
+        searchAndDestroy()
+        expect(document.body.innerHTML).toBe('Kritiker geht das nicht weit genug.')
+      })
     })
 
     describe('"...innen und ..."', () => {

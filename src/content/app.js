@@ -5,6 +5,7 @@
   const INNEN_EXPR = '([:*_]innen|!nnen|Innen)'
   const IN_EXPR = '([:*_]in|!n|In)'
   const INNEN_UND_EXPR = '[A-Za-zÄÖÜäöü]+innen (?:und|oder) ([A-Za-zÄÖÜäöü]+)'
+  const SPECIAL_EXPR = '(jede[:*_]r)'
 
   /* configuration */
   APP.config = {
@@ -12,6 +13,7 @@
       innen: new RegExp(INNEN_EXPR),
       in: new RegExp(IN_EXPR),
       innenUnd: new RegExp(INNEN_UND_EXPR),
+      special: new RegExp(SPECIAL_EXPR),
     },
   }
 
@@ -70,6 +72,18 @@
       const regExp = new RegExp(INNEN_UND_EXPR, 'g')
       const replace = (term, word) => word
       return { regExp, replace }
+    },
+
+    /**
+     * Creates a new replace-object with a regular expression
+     * for special gender terms
+     *
+     * @returns {{replace: (function(*, *): *), regExp: RegExp}}
+     */
+    getSpecialRegExp: function () {
+      const regExp = new RegExp(SPECIAL_EXPR, 'g')
+      const replace = term => term.replace(/[:*_]/, '')
+      return { regExp, replace}
     },
   }
 

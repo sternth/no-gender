@@ -2088,4 +2088,12 @@ describe('no-gender', () => {
       })
     })
   })
+
+  describe('special terms', () => {
+    it('should find and replace "jede:r"', () => {
+      document.body.innerHTML = 'Rund jede:r Sechste ist von Armut gefährdet.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Rund jeder Sechste ist von Armut gefährdet.')
+    })
+  })
 })

@@ -78,6 +78,10 @@
       const { regExp, replace } = APP.helpers.getInnenUndRegExp()
       node.nodeValue = node.nodeValue.replace(regExp, replace)
     }
+    if (regularExpressions.special.test(node.nodeValue)) {
+      const { regExp, replace } = APP.helpers.getSpecialRegExp()
+      node.nodeValue = node.nodeValue.replace(regExp, replace)
+    }
     if (containsSearchedExpressions(node.nodeValue)) {
       node.nodeValue = clean(node.nodeValue)
       if (regularExpressions.innen.test(node.nodeValue)) {

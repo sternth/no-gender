@@ -66,7 +66,27 @@
    * @returns {boolean} `true` if not a style or script node
    */
   function isRelevantNode (node) {
-    return !/^(STYLE|SCRIPT)$/.test(node.parentNode.nodeName)
+    const isContenteditable = checkContentIsEditable(node.parentElement, 3)
+    const isStyleOrScriptTag = /^(STYLE|SCRIPT)$/.test(node.parentNode.nodeName)
+    return !isContenteditable && !isStyleOrScriptTag
+  }
+
+  /**
+   * Check if any parent element has attribute contenteditable,
+   * which would break with this add-on
+   * @param parentElement parent element of node
+   * @param depth how deep should be looked for attribute contenteditable
+   * @returns {boolean} some parent has attribute contenteditable set `true`
+   */
+  function checkContentIsEditable (parentElement, depth) {
+    while (parentElement && --depth >= 0) {
+      const contenteditable = parentElement.getAttribute('contenteditable')
+      if (!contenteditable) {
+        parentElement = parentElement.parentElement
+      } else {
+        return true
+      }
+    }
   }
 
   /**

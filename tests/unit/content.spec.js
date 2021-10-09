@@ -2096,4 +2096,18 @@ describe('no-gender', () => {
       expect(document.body.innerHTML).toBe('Rund jeder Sechste ist von Armut gefährdet.')
     })
   })
+
+  describe('input elements', () => {
+    it('should ignore contenteditable elements', () => {
+      document.body.innerHTML = '<div contenteditable="true">Held*in</div>'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('<div contenteditable="true">Held*in</div>')
+    })
+
+    it('should ignore nodes inside contenteditable elements', () => {
+      document.body.innerHTML = '<div contenteditable="true"><span>Held*in</span></div>'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('<div contenteditable="true"><span>Held*in</span></div>')
+    })
+  })
 })

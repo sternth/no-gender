@@ -1,3 +1,6 @@
+## v1.6.0
+- Ignore nodes that has a parent with attribute contenteditable
+
 ## v1.5.0
 - Detect gender terms with "oder"
 - Detect special gender term "jede:r"

@@ -1,3 +1,6 @@
+## v1.7.0
+- Fix issue in detecting gender terms correctly
+
 ## v1.6.0
 - Ignore nodes that has a parent with attribute contenteditable
 

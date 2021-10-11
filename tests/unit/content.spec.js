@@ -53,11 +53,39 @@ describe('no-gender', () => {
       searchAndDestroy()
       expect(document.body.innerHTML).toBe('Lorem ipsum dolor sit amet')
     })
+  })
 
-    it('should not clean content if no gender expression exists', () => {
+  describe('normalizing', () => {
+    it('should remove disturbing &shy; html entities even if there is no gender term', () => {
       document.body.innerHTML = 'Lo&shy;rem ip&shy;sum do&shy;lor sit amet'
       searchAndDestroy()
-      expect(document.body.innerHTML).toBe('Lo\u00ADrem ip\u00ADsum do\u00ADlor sit amet')
+      expect(document.body.innerHTML).toBe('Lorem ipsum dolor sit amet')
+    })
+  })
+
+  describe('detection', () => {
+    let replaceMock
+
+    beforeEach(() => {
+      replaceMock = jest.spyOn(String.prototype, 'replace')
+    })
+
+    afterEach(() => {
+      replaceMock.mockClear()
+    })
+
+    it('should not replace sentences starting with In', () => {
+      document.body.innerHTML = 'In Lissabon spricht man portugiesisch.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('In Lissabon spricht man portugiesisch.')
+      expect(replaceMock).not.toHaveBeenCalled()
+    })
+
+    it('should not replace sentences starting with Innen', () => {
+      document.body.innerHTML = 'Innen scheint die Sonne nicht.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Innen scheint die Sonne nicht.')
+      expect(replaceMock).not.toHaveBeenCalled()
     })
   })
 
@@ -910,7 +938,7 @@ describe('no-gender', () => {
 
     describe('&shy;', () => {
       it('should find and replace "Be&shy;am&shy;t:in&shy;nen"', () => {
-        document.body.innerHTML = 'Sie alle sind Be&shy;am&shy;t:in&shy;nen!'
+        document.body.innerHTML = 'Sie alle sind Beamt:innen!'
         searchAndDestroy()
         expect(document.body.innerHTML).toBe('Sie alle sind Beamten!')
       })

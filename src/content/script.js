@@ -94,6 +94,7 @@
    * @param node {Node} node to check
    */
   function parseNode (node) {
+    normalizeNodeValue(node)
     if (regularExpressions.innenUnd.test(node.nodeValue)) {
       const { regExp, replace } = APP.helpers.getInnenUndRegExp()
       node.nodeValue = node.nodeValue.replace(regExp, replace)
@@ -102,34 +103,23 @@
       const { regExp, replace } = APP.helpers.getSpecialRegExp()
       node.nodeValue = node.nodeValue.replace(regExp, replace)
     }
-    if (containsSearchedExpressions(node.nodeValue)) {
-      node.nodeValue = clean(node.nodeValue)
-      if (regularExpressions.innen.test(node.nodeValue)) {
-        node.nodeValue = parseList(node.nodeValue, listPlural)
-      }
-      if (regularExpressions.in.test(node.nodeValue)) {
-        node.nodeValue = parseList(node.nodeValue, listSingular)
-      }
+    if (regularExpressions.wordInnen.test(node.nodeValue)) {
+      node.nodeValue = parseList(node.nodeValue, listPlural)
+    }
+    if (regularExpressions.wordIn.test(node.nodeValue)) {
+      node.nodeValue = parseList(node.nodeValue, listSingular)
     }
   }
 
   /**
-   * Check if text contains searched expressions
-   * @param text {string} text to be checked
-   * @returns {boolean} `true` if text contains searched expression
-   */
-  function containsSearchedExpressions (text) {
-    return regularExpressions.in.test(text) || regularExpressions.innen.test(text)
-  }
-
-  /**
-   * Removes disturbing character:
+   * Normalize nodeValue by removing disturbing characters:
    * - soft hyphens
-   * @param text {string} text to clean
-   * @returns {string} text without disturbing characters
+   * @param node {Node} node to normalize
    */
-  function clean (text) {
-    return text.replace(/[\u00AD]/g, '')
+  function normalizeNodeValue (node) {
+    if (/[\u00AD]/.test(node.nodeValue)) {
+      node.nodeValue = node.nodeValue.replace(/[\u00AD]/g, '')
+    }
   }
 
   /**

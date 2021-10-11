@@ -4,14 +4,16 @@
   const APP = global.noGender
   const INNEN_EXPR = '([:*_]innen|!nnen|Innen)'
   const IN_EXPR = '([:*_]in|!n|In)'
-  const INNEN_UND_EXPR = '[A-Za-zÄÖÜäöü]+innen (?:und|oder) ([A-Za-zÄÖÜäöü]+)'
+  const INNEN_UND_EXPR = '[A-Za-zÄÖÜäöüß]+innen (?:und|oder) ([A-Za-zÄÖÜäöü]+)'
   const SPECIAL_EXPR = '(jede[:*_]r)'
 
   /* configuration */
   APP.config = {
     regularExpressions: {
       innen: new RegExp(INNEN_EXPR),
+      wordInnen: new RegExp('[A-Za-zÄÖÜäöüß]' + INNEN_EXPR),
       in: new RegExp(IN_EXPR),
+      wordIn: new RegExp('[A-Za-zÄÖÜäöüß]' + IN_EXPR),
       innenUnd: new RegExp(INNEN_UND_EXPR),
       special: new RegExp(SPECIAL_EXPR),
     },

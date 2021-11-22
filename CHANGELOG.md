@@ -1,3 +1,7 @@
+## v1.8.0
+- Detect gender terms of schema "... und/oder ...innen"
+- Fix issue with false detections: e. g. package_info
+
 ## v1.7.0
 - Fix issue in detecting gender terms correctly
 

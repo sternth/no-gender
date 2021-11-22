@@ -99,6 +99,10 @@
       const { regExp, replace } = APP.helpers.getInnenUndOderRegExp()
       node.nodeValue = node.nodeValue.replace(regExp, replace)
     }
+    if (regularExpressions.undOderInnen.test(node.nodeValue)) {
+      const { regExp, replace } = APP.helpers.getUndOderInnenRegExp()
+      node.nodeValue = node.nodeValue.replace(regExp, replace)
+    }
     if (regularExpressions.special.test(node.nodeValue)) {
       const { regExp, replace } = APP.helpers.getSpecialRegExp()
       node.nodeValue = node.nodeValue.replace(regExp, replace)

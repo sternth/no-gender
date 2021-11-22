@@ -5,6 +5,7 @@
   const INNEN_EXPR = '([:*_]innen|!nnen|Innen)'
   const IN_EXPR = '([:*_]in|!n|In)'
   const INNEN_UND_ODER_EXPR = '[A-Za-zÄÖÜäöüß]+innen (?:und|oder) ([A-Za-zÄÖÜäöü]+)'
+  const UND_ODER_INNEN_EXPR = '([A-Za-zÄÖÜäöüß]+) (?:und|oder) [A-Za-zÄÖÜäöü]+innen'
   const SPECIAL_EXPR = '(jede[:*_]r)'
 
   /* configuration */
@@ -15,6 +16,7 @@
       in: new RegExp(IN_EXPR),
       wordIn: new RegExp('[A-Za-zÄÖÜäöüß]' + IN_EXPR),
       innenUndOder: new RegExp(INNEN_UND_ODER_EXPR),
+      undOderInnen: new RegExp(UND_ODER_INNEN_EXPR),
       special: new RegExp(SPECIAL_EXPR),
     },
   }
@@ -74,6 +76,18 @@
      */
     getInnenUndOderRegExp: function () {
       const regExp = new RegExp(INNEN_UND_ODER_EXPR, 'g')
+      const replace = (term, word) => word
+      return { regExp, replace }
+    },
+
+    /**
+     * Create a new replace-object for expressions of schema
+     * "term und/oder term innen"
+     *
+     * @returns {{replace: (function(*, *): *), regExp: RegExp}}
+     */
+    getUndOderInnenRegExp: function () {
+      const regExp = new RegExp(UND_ODER_INNEN_EXPR, 'g')
       const replace = (term, word) => word
       return { regExp, replace }
     },

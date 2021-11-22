@@ -891,4 +891,26 @@ describe('no-gender - plural', () => {
       expect(document.body.innerHTML).toBe('Eine Nachricht an alle Partner!')
     })
   })
+
+  describe('"... und ...innen"', function () {
+    it('should find and replace "Bürger und Bürgerinnen"', function () {
+      document.body.innerHTML = 'Sie alle sind Bürger und Bürgerinnen!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie alle sind Bürger!')
+    })
+
+    it('should find and replace "Besucher und Besucherinnen"', function () {
+      document.body.innerHTML = 'Sie alle sind Besucher und Besucherinnen!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie alle sind Besucher!')
+    })
+  })
+
+  describe('"... oder ...innen"', function () {
+    it('should find and replace "Mitarbeiter oder Mitarbeiterinnen"', function () {
+      document.body.innerHTML = 'Sie alle sind Mitarbeiter oder Mitarbeiterinnen!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie alle sind Mitarbeiter!')
+    })
+  })
 })

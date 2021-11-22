@@ -3,7 +3,7 @@
 
   const APP = global.noGender
   const INNEN_EXPR = '([:*_]innen|!nnen|Innen)'
-  const IN_EXPR = '([:*_]in|!n|In)'
+  const IN_EXPR = '([:*_]in|!n|In)[^A-Za-zÄÖÜäöüß]'
   const INNEN_UND_ODER_EXPR = '[A-Za-zÄÖÜäöüß]+innen (?:und|oder) ([A-Za-zÄÖÜäöü]+)'
   const UND_ODER_INNEN_EXPR = '([A-Za-zÄÖÜäöüß]+) (?:und|oder) [A-Za-zÄÖÜäöü]+innen'
   const SPECIAL_EXPR = '(jede[:*_]r)'
@@ -49,15 +49,6 @@
      * Creates a new replace-object with a regular expression
      * ending with "in" and a replace string
      *
-     * @example
-     * ```
-     * const obj = getInRegExp('Kirgis', 'Kirgise');
-     * expect(obj).toEqual({
-     *   regExp: /Kirgis([:*_]in|!n)/g,
-     *   replace: 'Kirgise',
-     * });
-     * ```
-     *
      * @param search {string|string[]} the search term
      * @param replace {string|function} the replace term or function
      * @returns {{replace, regExp: RegExp}} replace-object
@@ -65,6 +56,10 @@
     getInRegExp: function (search, replace) {
       const pattern = getPattern(search, IN_EXPR)
       const regExp = new RegExp(pattern, 'g')
+      if (typeof replace === 'string') {
+        const word = replace
+        replace = term => word + term[term.length - 1]
+      }
       return { regExp, replace }
     },
 

@@ -424,6 +424,12 @@ describe('no-gender - singular', () => {
       searchAndDestroy()
       expect(document.body.innerHTML).toBe('Sie als Baseler sind dazu verpflichtet.')
     })
+
+    it('should not replace terms ending with "*insight"', function () {
+      document.body.innerHTML = 'level*insight=unknown'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('level*insight=unknown')
+    })
   })
 
   describe('":in"', () => {
@@ -864,6 +870,12 @@ describe('no-gender - singular', () => {
       searchAndDestroy()
       expect(document.body.innerHTML).toBe('Sie als Bauer sind dazu verpflichtet.')
     })
+
+    it('should not replace terms ending with ":info"', function () {
+      document.body.innerHTML = 'the package:info is important'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('the package:info is important')
+    })
   })
 
   describe('"_in"', () => {
@@ -1094,6 +1106,12 @@ describe('no-gender - singular', () => {
       searchAndDestroy()
       expect(document.body.innerHTML).toBe('Sie als Wanderer sind dazu verpflichtet.')
     })
+
+    it('should not replace terms ending with "_info"', function () {
+      document.body.innerHTML = 'the package_info is important'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('the package_info is important')
+    })
   })
 
   describe('"In"', () => {
@@ -1149,6 +1167,50 @@ describe('no-gender - singular', () => {
       document.body.innerHTML = 'Auf dem Trampolin springen ist In, aber auch gefährlich!'
       searchAndDestroy()
       expect(document.body.innerHTML).toBe('Auf dem Trampolin springen ist In, aber auch gefährlich!')
+    })
+
+    it('should not replace terms ending with "Info"', function () {
+      document.body.innerHTML = 'the packageInfo is important'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('the packageInfo is important')
+    })
+  })
+
+  describe('special', function () {
+    it('should recognize space after gender term', function () {
+      document.body.innerHTML = 'Alchemist*in sein ist gefragt.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Alchemist sein ist gefragt.')
+    })
+
+    it('should recognize dot after gender term', function () {
+      document.body.innerHTML = 'Suche Alchemist*in.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Suche Alchemist.')
+    })
+
+    it('should recognize comma after gender term', function () {
+      document.body.innerHTML = 'Suche Alchemist*in, schnell.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Suche Alchemist, schnell.')
+    })
+
+    it('should recognize exclamation mark after gender term', function () {
+      document.body.innerHTML = 'Suche Alchemist*in!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Suche Alchemist!')
+    })
+
+    it('should recognize question mark after gender term', function () {
+      document.body.innerHTML = 'Suche Alchemist*in?'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Suche Alchemist?')
+    })
+
+    it('should recognize colon after gender term', function () {
+      document.body.innerHTML = 'Suche Alchemist*in: Dringend!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Suche Alchemist: Dringend!')
     })
   })
 })

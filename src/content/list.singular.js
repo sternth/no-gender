@@ -196,15 +196,15 @@
       'Afghan',
       'Äbtiss',
       'Abchas',
-    ], (term, word) => word + 'e'),
+    ], (term, word) => word + 'e' + term[term.length - 1]),
   ]).concat([
     /**
      * Replace objects for all other plural terms:
-     * - Alechemist*in -> Alchemist
+     * - Alchemist*in -> Alchemist
      * - Held*in -> Held
      * - Bürger*in -> Bürger
      */
-    getInRegExp('(?:\\w)', term => term[0]),
+    getInRegExp('(?:\\w)', term => term[0] + term[term.length - 1]),
   ])
 
   /* code here */

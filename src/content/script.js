@@ -95,8 +95,8 @@
    */
   function parseNode (node) {
     normalizeNodeValue(node)
-    if (regularExpressions.innenUnd.test(node.nodeValue)) {
-      const { regExp, replace } = APP.helpers.getInnenUndRegExp()
+    if (regularExpressions.innenUndOder.test(node.nodeValue)) {
+      const { regExp, replace } = APP.helpers.getInnenUndOderRegExp()
       node.nodeValue = node.nodeValue.replace(regExp, replace)
     }
     if (regularExpressions.special.test(node.nodeValue)) {

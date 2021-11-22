@@ -4,7 +4,7 @@
   const APP = global.noGender
   const INNEN_EXPR = '([:*_]innen|!nnen|Innen)'
   const IN_EXPR = '([:*_]in|!n|In)'
-  const INNEN_UND_EXPR = '[A-Za-zÄÖÜäöüß]+innen (?:und|oder) ([A-Za-zÄÖÜäöü]+)'
+  const INNEN_UND_ODER_EXPR = '[A-Za-zÄÖÜäöüß]+innen (?:und|oder) ([A-Za-zÄÖÜäöü]+)'
   const SPECIAL_EXPR = '(jede[:*_]r)'
 
   /* configuration */
@@ -14,7 +14,7 @@
       wordInnen: new RegExp('[A-Za-zÄÖÜäöüß]' + INNEN_EXPR),
       in: new RegExp(IN_EXPR),
       wordIn: new RegExp('[A-Za-zÄÖÜäöüß]' + IN_EXPR),
-      innenUnd: new RegExp(INNEN_UND_EXPR),
+      innenUndOder: new RegExp(INNEN_UND_ODER_EXPR),
       special: new RegExp(SPECIAL_EXPR),
     },
   }
@@ -67,11 +67,13 @@
     },
 
     /**
+     * Creates a new replace-object for terms of schema
+     * "term innen und/oder term"
      *
      * @returns {{replace, regExp: RegExp}} replace-object
      */
-    getInnenUndRegExp: function () {
-      const regExp = new RegExp(INNEN_UND_EXPR, 'g')
+    getInnenUndOderRegExp: function () {
+      const regExp = new RegExp(INNEN_UND_ODER_EXPR, 'g')
       const replace = (term, word) => word
       return { regExp, replace }
     },

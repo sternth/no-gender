@@ -253,6 +253,12 @@ describe('no-gender - plural', () => {
       expect(document.body.innerHTML).toBe('Gendern mit Sternchen: Kunden.')
     })
 
+    it('should find and replace "Sternchen: Kunden*innen"', function () {
+      document.body.innerHTML = 'Das gilt für Kunden*innen bei körpernahen Dienstleistungen!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Das gilt für Kunden bei körpernahen Dienstleistungen!')
+    })
+
     it('should find and replace Bierverkäufer*innen"', () => {
       document.body.innerHTML = 'Sie alle sind Bierverkäufer*innen!'
       searchAndDestroy()

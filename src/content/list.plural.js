@@ -9,6 +9,7 @@
     /**
      * Replace objects of plural terms that have no generic replacer
      */
+    getInnenRegExp('Kunden', 'Kunden'),
     getInnenRegExp('Erzherzog', 'Erzherzöge'),
     getInnenRegExp('Fränk', 'Franken'),
     getInnenRegExp('Frei', 'Freiherren'),

@@ -1,7 +1,7 @@
 {
   "name": "No Gender",
   "description": "Entfernt diverse Arten des \"Gendern\" auf Webseiten.",
-  "version": "1.8",
+  "version": "1.9",
   "manifest_version": 2,
   "background": {
     "scripts": [

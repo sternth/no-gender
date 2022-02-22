@@ -1,3 +1,7 @@
+## v1.9.0
+- Detect gender term "ein:e"
+- Detect gender term "Kunden*innen"
+
 ## v1.8.0
 - Detect gender terms of schema "... und/oder ...innen"
 - Fix issue with false detections: e. g. package_info

@@ -1,4 +1,5 @@
 require('../../src/content/app')
+require('../../src/content/list.custom')
 require('../../src/content/list.plural')
 require('../../src/content/list.singular')
 require('../../src/content/script')
@@ -1211,6 +1212,12 @@ describe('no-gender - singular', () => {
       document.body.innerHTML = 'Suche Alchemist*in: Dringend!'
       searchAndDestroy()
       expect(document.body.innerHTML).toBe('Suche Alchemist: Dringend!')
+    })
+
+    it('should recognize ein:e before a gender term', function () {
+      document.body.innerHTML = 'ein:e Nachfolger:in wird bereits gesucht'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('ein Nachfolger wird bereits gesucht')
     })
   })
 })

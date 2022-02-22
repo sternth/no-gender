@@ -18,6 +18,7 @@
       ],
       "js": [
         "content/app.js",
+        "content/list.custom.js",
         "content/list.plural.js",
         "content/list.singular.js",
         "content/script.js"

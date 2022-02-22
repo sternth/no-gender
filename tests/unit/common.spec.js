@@ -9,6 +9,7 @@ const {
 
 require('../../src/content/app')
 require('../../src/content/list.plural')
+require('../../src/content/list.custom')
 require('../../src/content/list.singular')
 require('../../src/content/script')
 

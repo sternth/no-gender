@@ -3,7 +3,7 @@
 
   const APP = global.noGender
   const { regularExpressions } = APP.config
-  const { listPlural, listSingular } = APP
+  const { listCustom, listPlural, listSingular } = APP
   let timeoutId = null
   let counter = 0
 
@@ -103,16 +103,17 @@
       const { regExp, replace } = APP.helpers.getUndOderInnenRegExp()
       node.nodeValue = node.nodeValue.replace(regExp, replace)
     }
-    if (regularExpressions.special.test(node.nodeValue)) {
-      const { regExp, replace } = APP.helpers.getSpecialRegExp()
-      node.nodeValue = node.nodeValue.replace(regExp, replace)
-    }
     if (regularExpressions.wordInnen.test(node.nodeValue)) {
       node.nodeValue = parseList(node.nodeValue, listPlural)
     }
     if (regularExpressions.wordIn.test(node.nodeValue)) {
       node.nodeValue = parseList(node.nodeValue, listSingular)
     }
+    listCustom.forEach(({ regExp, replace }) => {
+      if (regExp.test(node.nodeValue)) {
+        node.nodeValue = node.nodeValue.replace(regExp, replace)
+      }
+    })
   }
 
   /**

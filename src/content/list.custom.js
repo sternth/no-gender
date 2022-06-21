@@ -10,5 +10,9 @@
      */
     { regExp: /jede[:*_]r/, replace: 'jeder' },
     { regExp: /ein[:*_]e/, replace: 'ein' },
+    { regExp: /Forschende/, replace: 'Forscher' },
+    { regExp: /Mitarbeitende/, replace: 'Mitarbeiter' },
+    { regExp: /Studierenden*/, replace: 'Studenten' },
+    { regExp: /Teilnehmenden*/, replace: 'Teilnehmer' },
   ]
 }(typeof window !== 'undefined' ? window : this))

@@ -47,6 +47,10 @@
    */
   function iterate () {
     const start = Date.now()
+
+    const title = window.document.title
+    window.document.title = degenderfyString(title)
+
     const root = window.document.body
     const walker = window.document
       .createTreeWalker(root, NodeFilter.SHOW_TEXT, null)
@@ -89,31 +93,40 @@
     }
   }
 
+  function degenderfyString (value) {
+    if (regularExpressions.innenUndOder.test(value)) {
+      const { regExp, replace } = APP.helpers.getInnenUndOderRegExp()
+      value = value.replace(regExp, replace)
+      counter++
+    }
+    if (regularExpressions.undOderInnen.test(value)) {
+      const { regExp, replace } = APP.helpers.getUndOderInnenRegExp()
+      value = value.replace(regExp, replace)
+      counter++
+    }
+    if (regularExpressions.wordInnen.test(value)) {
+      value = parseList(value, listPlural)
+    }
+    if (regularExpressions.wordIn.test(value)) {
+      value = parseList(value, listSingular)
+    }
+    listCustom.forEach(({ regExp, replace }) => {
+      if (regExp.test(value)) {
+        value = value.replace(regExp, replace)
+        counter++
+      }
+    })
+
+    return value
+  }
+
   /**
    * Parse nodeValue of given node
    * @param node {Node} node to check
    */
   function parseNode (node) {
     normalizeNodeValue(node)
-    if (regularExpressions.innenUndOder.test(node.nodeValue)) {
-      const { regExp, replace } = APP.helpers.getInnenUndOderRegExp()
-      node.nodeValue = node.nodeValue.replace(regExp, replace)
-    }
-    if (regularExpressions.undOderInnen.test(node.nodeValue)) {
-      const { regExp, replace } = APP.helpers.getUndOderInnenRegExp()
-      node.nodeValue = node.nodeValue.replace(regExp, replace)
-    }
-    if (regularExpressions.wordInnen.test(node.nodeValue)) {
-      node.nodeValue = parseList(node.nodeValue, listPlural)
-    }
-    if (regularExpressions.wordIn.test(node.nodeValue)) {
-      node.nodeValue = parseList(node.nodeValue, listSingular)
-    }
-    listCustom.forEach(({ regExp, replace }) => {
-      if (regExp.test(node.nodeValue)) {
-        node.nodeValue = node.nodeValue.replace(regExp, replace)
-      }
-    })
+    node.nodeValue = degenderfyString(node.nodeValue)
   }
 
   /**

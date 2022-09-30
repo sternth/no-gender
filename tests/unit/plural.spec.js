@@ -920,4 +920,20 @@ describe('no-gender - plural', () => {
       expect(document.body.innerHTML).toBe('Sie alle sind Mitarbeiter!')
     })
   })
+
+  describe('"...innen und ..."', () => {
+    it('should NOT find and replace "gewinnen und sie"', function () {
+      document.body.innerHTML = '"[...]wir können keine Energie daraus gewinnen und sie wird so wieder ausgeschieden'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('"[...]wir können keine Energie daraus gewinnen und sie wird so wieder ausgeschieden')
+    })
+  })
+
+  describe('"... und ...innen"', function () {
+    it('should NOT find and replace "sie und gewinnen"', function () {
+      document.body.innerHTML = '[...]energetisch und gewinnen somit den ersten Platz!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('[...]energetisch und gewinnen somit den ersten Platz!')
+    })
+  })
 })

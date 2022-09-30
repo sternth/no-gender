@@ -2,10 +2,10 @@
   global.noGender = global.noGender || {}
 
   const APP = global.noGender
-  const INNEN_EXPR = '([:*_]innen|!nnen|Innen)'
-  const IN_EXPR = '([:*_]in|!n|In)[^A-Za-zÄÖÜäöüß]'
-  const INNEN_UND_ODER_EXPR = '[A-Za-zÄÖÜäöüß]+innen (?:und|oder) ([A-Za-zÄÖÜäöü]+)'
-  const UND_ODER_INNEN_EXPR = '([A-Za-zÄÖÜäöüß]+) (?:und|oder) [A-Za-zÄÖÜäöü]+innen'
+  const INNEN_EXPR = '([:*_\/]innen|!nnen|Innen)'
+  const IN_EXPR = '([:*_\/]in|!n|In)[^A-Za-zÄÖÜäöüß]'
+  const INNEN_UND_ODER_EXPR = '(([-]*[A-Za-zÄÖÜäöüß]+?)(i|I)nnen) (?:und|oder) ([-]*\\2+[A-Za-zÄÖÜäöüß]*)'
+  const UND_ODER_INNEN_EXPR = '([-]*[A-Z][A-Za-zÄÖÜäöüß]*) (?:und|oder) (([-]*[A-Z][A-Za-zÄÖÜäöüß]+?)(i|I)nnen)'
 
   /* configuration */
   APP.config = {
@@ -69,7 +69,7 @@
      */
     getInnenUndOderRegExp: function () {
       const regExp = new RegExp(INNEN_UND_ODER_EXPR, 'g')
-      const replace = (term, word) => word
+      const replace = (term, _1, _2, _3, word) => word
       return { regExp, replace }
     },
 

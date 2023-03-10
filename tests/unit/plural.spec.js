@@ -902,10 +902,10 @@ describe('no-gender - plural', () => {
       expect(document.body.innerHTML).toBe('Alle sieben Besatzungsmitglieder – zwei Astronautinnen und fünf Astronauten – kamen ums Leben.')
     })
 
-    it('should not find and replace "fünf Astronauten und zwei Astronautinnen"', () => {
-      document.body.innerHTML = 'Alle sieben Besatzungsmitglieder – fünf Astronauten und zwei Astronautinnen – kamen ums Leben.'
+    it('should not find and replace "gewinnen und something"', () => {
+      document.body.innerHTML = 'Wir können keine Energie daraus gewinnen und sie wird so wieder ausgeschieden.'
       searchAndDestroy()
-      expect(document.body.innerHTML).toBe('Alle sieben Besatzungsmitglieder – fünf Astronauten und zwei Astronautinnen – kamen ums Leben.')
+      expect(document.body.innerHTML).toBe('Wir können keine Energie daraus gewinnen und sie wird so wieder ausgeschieden.')
     })
   })
 
@@ -928,6 +928,12 @@ describe('no-gender - plural', () => {
       document.body.innerHTML = 'Sie alle sind Besucher und Besucherinnen!'
       searchAndDestroy()
       expect(document.body.innerHTML).toBe('Sie alle sind Besucher!')
+    })
+
+    it('should not find and replace "fünf Astronauten und zwei Astronautinnen"', () => {
+      document.body.innerHTML = 'Alle sieben Besatzungsmitglieder – fünf Astronauten und zwei Astronautinnen – kamen ums Leben.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Alle sieben Besatzungsmitglieder – fünf Astronauten und zwei Astronautinnen – kamen ums Leben.')
     })
   })
 

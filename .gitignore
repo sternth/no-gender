@@ -2,6 +2,7 @@
 coverage
 dist/chrome-dev
 node_modules
+package_lock.json
 
 # local env files
 .env.local

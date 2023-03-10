@@ -4,8 +4,8 @@
   const APP = global.noGender
   const INNEN_EXPR = '([:*_]innen|!nnen|Innen)'
   const IN_EXPR = '([:*_]in|!n|In)[^A-Za-zÄÖÜäöüß]'
-  const INNEN_UND_ODER_EXPR = '[A-Za-zÄÖÜäöüß]+innen (?:und|oder) ([A-Za-zÄÖÜäöü]+)'
-  const UND_ODER_INNEN_EXPR = '([A-Za-zÄÖÜäöüß]+) (?:und|oder) [A-Za-zÄÖÜäöü]+innen'
+  const INNEN_UND_ODER_EXPR = '([A-Za-zÄÖÜäöüß]+)(i|I)nnen (?:und|oder) ([A-Za-zÄÖÜäöü]+)'
+  const UND_ODER_INNEN_EXPR = '([A-Za-zÄÖÜäöüß]+) (?:und|oder) ([A-Za-zÄÖÜäöü]+)(i|I)nnen'
 
   /* configuration */
   APP.config = {
@@ -69,7 +69,13 @@
      */
     getInnenUndOderRegExp: function () {
       const regExp = new RegExp(INNEN_UND_ODER_EXPR, 'g')
-      const replace = (term, word) => word
+      const replace = (term, word, _1, word2) => {
+        if (word2.toLowerCase().startsWith(word.toLowerCase())) {
+          return word2
+        } else {
+          return term
+        }
+      }
       return { regExp, replace }
     },
 
@@ -81,7 +87,13 @@
      */
     getUndOderInnenRegExp: function () {
       const regExp = new RegExp(UND_ODER_INNEN_EXPR, 'g')
-      const replace = (term, word) => word
+      const replace = (term, word, word2) => {
+        if (word.toLowerCase().startsWith(word2.toLowerCase())) {
+          return word
+        } else {
+          return term
+        }
+      }
       return { regExp, replace }
     },
   }

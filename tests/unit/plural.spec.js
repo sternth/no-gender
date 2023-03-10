@@ -889,6 +889,24 @@ describe('no-gender - plural', () => {
       searchAndDestroy()
       expect(document.body.innerHTML).toBe('Sie alle sind Ärzte!')
     })
+
+    it('should find and replace "ÄrztInnen und Ärzte"', () => {
+      document.body.innerHTML = 'Sie alle sind ÄrztInnen und Ärzte!'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Sie alle sind Ärzte!')
+    })
+
+    it('should not find and replace "zwei Astronautinnen und fünf Astronauten"', () => {
+      document.body.innerHTML = 'Alle sieben Besatzungsmitglieder – zwei Astronautinnen und fünf Astronauten – kamen ums Leben.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Alle sieben Besatzungsmitglieder – zwei Astronautinnen und fünf Astronauten – kamen ums Leben.')
+    })
+
+    it('should not find and replace "fünf Astronauten und zwei Astronautinnen"', () => {
+      document.body.innerHTML = 'Alle sieben Besatzungsmitglieder – fünf Astronauten und zwei Astronautinnen – kamen ums Leben.'
+      searchAndDestroy()
+      expect(document.body.innerHTML).toBe('Alle sieben Besatzungsmitglieder – fünf Astronauten und zwei Astronautinnen – kamen ums Leben.')
+    })
   })
 
   describe('"...innen oder ..."', () => {
